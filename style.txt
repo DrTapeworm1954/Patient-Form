@@ -1,0 +1,55 @@
+  /* 
+ Name: Jared Holloway
+ File: style.css
+ Date created: 02/09/2025
+ Date submitted: 02/09/2025
+ Description: The css code for the patient-form
+ */
+ h1{
+    font-size: 40px;
+    color: rgb(87, 49, 255);
+ }
+ h2
+ {
+    font-size: 50px;
+    color: rgb(242, 58, 58);
+ }
+body
+{
+    background-color: rgb(184, 252, 215);
+    font-family: "Web Safe Fonts", monospace;
+    color: rgb(0, 0, 0);
+}
+div
+{
+    font-size: 8px;
+    color: blue;
+    
+}
+.valid {
+    color: green;
+}
+
+.invalid {
+    color: red;
+}
+p{
+    font-size: 12px;
+}
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(0, 236, 122);
+  color: white;
+  text-align: center;
+}
+.header {
+  position: sticky;
+  top: 0;
+  padding: 1px 16px;
+  background-color: rgb(0, 236, 122);
+  color: #f1f1f1;
+}
+

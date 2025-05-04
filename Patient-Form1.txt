@@ -1,0 +1,635 @@
+function fnameValidation(){
+    var firstname = document.getElementById("fname").value;
+    var firstnameformat = /^[A-Za-z'-]+$/;
+    var fnameFeedback = document.getElementById("fnameFeedback");
+
+    //Check for First name input
+    if (fname.length < 1 || fname.length > 30) {
+        fnameFeedback.textContent = "First name must be between 1 and 30 characters.";
+        fnameFeedback.className = "invalid";
+        return;
+    } 
+
+    if(!firstnameformat.test(firstname)){
+        fnameFeedback.textContent = "First name must only have letters, apostrophes, or dashes."
+        fnameFeedback.className = "invalid";
+        return;
+    }
+
+    fnameFeedback.textContent = "Valid first name.";
+    fnameFeedback.className = "valid";
+}
+
+function mnameValidation(){
+    var middlename = document.getElementById("mname").value;
+    var middlenameformat = /^[A-Za-z]+$/;
+    var mnameFeedback = document.getElementById("mnameFeedback");
+
+    //Check for MIddle name input
+    if(middlename != ""){
+        if(!middlenameformat.test(middlename)) {
+            mnameFeedback.textContent = "Middle name must only have letters.";
+            mnameFeedback.className = "invalid";
+            return;
+        }
+        mnameFeedback.textContent = "Valid middle initial.";
+        mnameFeedback.className = "valid";
+    }
+    if(middlename == ""){
+        mnameFeedback.textContent = ""; // Allow blank middle initial
+        mnameFeedback.className = "";
+    }
+}
+
+function lnameValidation(){
+    var lastname = document.getElementById("lname").value;
+    var lastnameformat = /^[2-5A-Za-z'-]+$/;
+    var lnameFeedback = document.getElementById("lnameFeedback");
+
+    //Check for Last name input
+    if (lastname.length < 2 || lastname.length > 30) {
+        lnameFeedback.textContent = "Last name must be between 2 and 30 characters.";
+        lnameFeedback.className = "invalid";
+        return;
+    }
+    if (!lastnameformat.test(lastname)) {
+        lnameFeedback.textContent = "Last name must only have letters, apostrophes, numbers 2 to 5, ie, the 3rd, and dashes.";
+        lnameFeedback.className = "invalid";
+    } 
+    else{
+        lnameFeedback.textContent = "Valid last name.";
+        lnameFeedback.className = "valid";
+    }
+}
+
+function dobValidation(){
+    var date_of_birth = document.getElementById("dob").value;
+    var dateformat = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+    var dobFeedback = document.getElementById("dobFeedback");
+    var now = new Date();
+    var date_of_birth_conv = new Date(date_of_birth);
+    var difference = now - date_of_birth_conv;
+    var yeardifference = difference / (1000 * 3600 * 24 * 365); // Age in years
+    
+    //Check if Date of Birth is in the correct format
+    if (!dateformat.test(date_of_birth)) {
+        dobFeedback.textContent = "Please enter DOB in MM/DD/YYYY format.";
+        dobFeedback.className = "invalid";
+        return;
+    }
+    if (date_of_birth_conv > now) {
+        dobFeedback.textContent = "Date of Birth cannot be in the future.";
+        dobFeedback.className = "invalid";
+        return;
+    }
+    if (yeardifference > 120) {
+        dobFeedback.textContent = "Age cannot be over 120 years.";
+        dobFeedback.className = "invalid";
+        return;
+    }
+    else{
+        dobFeedback.textContent = "Valid Date of Birth.";
+        dobFeedback.className = "valid";
+    }
+}
+
+function socialValidation(){
+    var social = document.getElementById("ssn").value;
+    var numb = /^\d+$/;
+    var socialFeedback = document.getElementById("socialFeedback");
+
+    //Check if Social Security has only numbers
+    if (social == ""){
+        socialFeedback.textContent = "Please enter your social security.";
+        socialFeedback.className = "invalid";
+        return;
+    }
+    if (!social.match(numb)){
+        socialFeedback.textContent ="Your social security can only contain numbers.";
+        socialFeedback.className = "invalid";
+        return;
+    }
+    if (social.length < 9 || social.length > 11){
+        socialFeedback.textContent = "Your social security needs to be between 9 and 11 digits.";
+        socialFeedback.className = "invalid";
+        return;
+    }
+    socialFeedback.textContent = "Valid Social Security.";
+    socialFeedback.className = "valid";
+}
+
+function addressValidation(){
+    var address = document.getElementById("address").value;
+    var addFeedback = document.getElementById("addFeedback");
+
+    //Check for address input
+    if(address == ""){
+       addFeedback.textContent = "Please enter an address.";
+       addFeedback.className = "invalid";
+        return;
+    }
+    if(address.length < 2){
+        addFeedback.textContent = "Please enter an address with at least 2 characters.";
+        addFeedback.className = "invalid";
+        return;
+    }
+    addFeedback.textContent = "Valid address.";
+    addFeedback.className = "valid";
+}
+
+function address2Validation(){
+    var address2 = document.getElementById("address2").value;
+    var add2Feedback = document.getElementById("add2Feedback");
+
+    //Check for address input
+    if(address2 != ""){
+        if(address2.length < 2){
+        add2Feedback.textContent = "Please enter an address with at least 2 characters.";
+        add2Feedback.className = "invalid";
+        return;
+        }
+        add2Feedback.textContent = "Valid address.";
+        add2Feedback.className = "valid";
+    }
+    if(address2 == ""){
+        add2Feedback.textContent = "";
+        add2Feedback.className = "";
+    }
+}
+
+function cityValidation(){
+    var city = document.getElementById("city").value;
+    var cityFeedback = document.getElementById("cityFeedback");
+
+    //Check for city input
+    if(city == ""){
+        cityFeedback.textContent = "Please enter a city.";
+        cityFeedback.className = "invalid";
+        return;
+    }
+    if(city.length < 2){
+        cityFeedback.textContent = "Please enter a city with at least 2 characters";
+        cityFeedback.className = "invalid";
+        return;
+    }
+    cityFeedback.textContent = "Valid city.";
+    cityFeedback.className = "valid";
+}
+
+function stateValidation(){
+    var stateselected = document.getElementById("state").value;
+    var stateFeedback = document.getElementById("stateFeedback");
+
+    //Check if a state was selected
+    if(stateselected == "Default"){
+        stateFeedback.textContent = "Please select a state.";
+        stateFeedback.className = "invalid";
+        return;
+    }
+    if(stateselected != "Default"){
+        stateFeedback.textContent = "";
+        stateFeedback.className = "";
+        return;
+    }
+}
+
+function zipValidation(){
+    var zipcode = document.getElementById("zip").value;
+    var numb = /^\d+$/;
+    var zipFeedback = document.getElementById("zipFeedback");
+
+    //Check for zipcode input
+    if(zipcode == ""){
+        zipFeedback.textContent = "Please enter a zip code.";
+        zipFeedback.className = "invalid";
+        return;
+    }
+    if(zipcode.length < 5){
+        zipFeedback.textContent = "zip code has to be at least 5 digits.";
+        zipFeedback.className = "invalid";
+        return;
+    }
+    if (!zipcode.match(numb)){
+        zipFeedback.textContent = "zip code can only contain numbers";
+        zipFeedback.className = "invalid";
+        return;
+    }
+    zipFeedback.textContent = "Valid zip code.";
+    zipFeedback.className = "valid";
+}
+
+function emailValidation(){
+    var email = document.getElementById("email").value;
+    var emailformat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    var emailFeedback = document.getElementById("emailFeedback");
+
+    //Check for email input
+    if(email == ""){
+        emailFeedback.textContent = "Please enter your email.";
+        emailFeedback.className = "invalid";        
+        return;
+    }
+    if(!(emailformat.test(email))){
+        emailFeedback.textContent ="Please enter a proper email address (ex. name@domain.tld).";
+        emailFeedback.className = "invalid";
+        return;
+    }
+    emailFeedback.textContent = "Valid email.";
+    emailFeedback.className = "valid";
+}
+
+function userValidation(){
+    var userID = document.getElementById("id").value;
+    var userIDformat = /^[a-zA-Z][a-zA-Z0-9_-]{4,29}$/;
+    var userFeedback = document.getElementById("userFeedback");
+
+    // User id check
+    if(userID.length < 5 || userID.length > 30){
+        userFeedback.textContent = "Please enter a user ID between 5 to 30 characters.";
+        userFeedback.className = "invalid"; 
+        return;
+    }
+    if(!userIDformat.test(userID)){
+        userFeedback.textContent = "User ID cannot start with a number. Can only contain letters, numbers, underscores, and dashes.No spaces allowed.";
+        userFeedback.className = "invalid";
+        return;
+    }
+    userFeedback.textContent = "Valid username.";
+    userFeedback.className = "valid";
+
+}
+function validateCheck(){
+    //Not able to make this function work properly.
+    /*const isValid = formValidation();
+    if(isValid) {
+        // If all validations pass, show submit button
+        document.getElementById("submitbut").style.display = "inline-block";
+        alert("All fields validated! You can now submit.");
+    }
+    else{
+        // If validation fails, keep submit hidden
+        document.getElementById("submitbut").style.display = "none";
+        alert("Please correct the errors.");
+    }*/
+    document.getElementById("submitbut").style.display = "inline-block";
+}
+
+function formValidation(){
+    var firstname = document.getElementById("fname").value;
+    var firstnameformat = /^[A-Za-z'-]+$/;
+    var lastname = document.getElementById("lname").value;
+    var lastnameformat = /^[2-5A-Za-z'-]+$/;
+    var middlename = document.getElementById("mname").value;
+    var middlenameformat = /^[A-Za-z]+$/;
+    var date_of_birth = document.getElementById("dob").value;
+    var dateformat = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+    // found this on stackoverflow link here https://stackoverflow.com/questions/6177975/how-to-validate-date-with-format-mm-dd-yyyy-in-javascript
+    var date_of_birth_conv = new Date(date_of_birth);
+    var now = new Date(); 
+    var difference = now - date_of_birth_conv;
+    var yeardifference = difference / (1000 * 3600 * 24 * 365); // Found out later that the dates where milliseconds
+    var social = document.getElementById("ssn").value;
+    var numb = /^\d+$/;
+    var address = document.getElementById("address").value;
+    var address2 = document.getElementById("address2").value;
+    var city = document.getElementById("city").value;
+    var zipcode = document.getElementById("zip").value;
+    var email = document.getElementById("email").value;
+    var emailformat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // found this on geeksforgeeks link here https://www.geeksforgeeks.org/javascript-program-to-validate-an-email-address/
+    var stateselected = document.getElementById("state").value;
+    var userID = document.getElementById("id").value;
+    var userIDformat = /^[a-zA-Z][a-zA-Z0-9_-]{4,29}$/;
+    var password = document.getElementById("password").value;
+    var password2 = document.getElementById("password2").value;
+    var uppercase = /[A-Z]/;
+    var lowercase = /[a-z]/;
+    var numb = /[0-9]/;
+    var special = /[ !@#$%^&*()_+\-=\[\]{};:\\|,.<>\/?~]/;// took out the quotations from example.
+
+    //Check for First name input
+    if (firstname == ""){
+        alert("Please enter your first name.")
+        event.preventDefault();  // Prevent form submission
+        return false;
+    }
+    if(!firstnameformat.test(firstname)){
+        alert("First name must only have letters, apostrophes, or dashes.")
+        event.preventDefault();  // Prevent form submission
+        return false;
+    }
+
+    //Check for Last name input
+    if (lastname == ""){
+        alert("Please enter your last name.")
+        event.preventDefault();  // Prevent form submission
+        return false;
+    }
+    if(!lastnameformat.test(lastname)){
+        alert("Last name must only have letters, apostrophes, numbers 2 to 5, ie, the 3rd, and dashes.")
+        event.preventDefault();  // Prevent form submission
+        return false;
+    }
+
+    //Check Middle name is entered correctly
+     if(middlename != ""){
+        if(!middlenameformat.test(middlename)) {
+            alert("Middle name must only have letters.")
+            event.preventDefault();  // Prevent form submission
+            return false;
+        }
+    }
+
+    //Check if Date of Birth is in the correct format
+    if (!(dateformat.test(date_of_birth))){
+        alert("Please enter in MM/DD/YYYY format.")
+        event.preventDefault(); // Prevent form submission
+        return false;
+    }
+    if (date_of_birth_conv > now) {
+        alert("Date of Birth cannot be in the future.");
+        event.preventDefault(); // Prevent form submission
+        return false;
+    }
+    if (yeardifference > 120) {
+        alert("Date of Birth cannot be more than 120 years ago.");
+        event.preventDefault(); // Prevent form submission
+        return false;
+    }
+
+    //Check if Social Security has only numbers
+    if (social == ""){
+        alert("Please enter your social security.")
+        event.preventDefault(); // Prevent form submission
+        return false;
+    }
+    if (!social.match(numb)){
+        alert("Your social security can only contain numbers.")
+        event.preventDefault(); // Prevent form submission
+        return false;
+    }
+    if (social.length < 9 || social.length > 11){
+        alert("Your social security needs to be between 9 and 11 digits.")
+        event.preventDefault(); // Prevent form submission
+        return false;
+    }
+
+    //Check for address input
+    if(address == ""){
+        alert("Please enter an address.")
+        event.preventDefault(); // Prevent form submission
+        return false;
+    }
+    if(address.length < 2){
+        alert("Please enter an address with at least 2 characters.")
+        event.preventDefault(); // Prevent form submission
+        return false;
+    }
+
+    //Check for address 2 input
+    if(address2 != ""){
+        if(address2.length < 2){
+            alert("Please enter an address with at least 2 characters.")
+            event.preventDefault(); // Prevent form submission
+        return false;
+        }
+    }
+
+    //Check for city input
+    if(city == ""){
+        alert("Please enter a city")
+        event.preventDefault(); // Prevent form submission
+        return false;
+    }
+    if(city.length < 2){
+        alert("Please enter a city with at least 2 characters")
+        event.preventDefault(); // Prevent form submission
+        return false;
+    }
+
+    //Check if a state was selected
+    if(stateselected == "Default"){
+        alert("Please select a state.")
+        event.preventDefault(); // Prevent form submission
+        return false;
+    }
+    //Check for zipcode input
+    if(zipcode == ""){
+        alert("Please enter a zip code.")
+        event.preventDefault(); // Prevent form submission
+        return false;
+    }
+    if(zipcode.length < 5){
+        alert("zip code has to be at least 5 digits.")
+        event.preventDefault(); // Prevent form submission
+        return false;
+    }
+    if (!zipcode.match(numb)){
+        alert("Your zip code can only contain numbers.")
+        event.preventDefault(); // Prevent form submission
+        return false;
+    }
+
+    //Check for email input
+    if(email == ""){
+        alert("Please enter you email.")
+        event.preventDefault(); // Prevent form submission
+        return false;
+    }
+    if(!(emailformat.test(email))){
+        alert("Please enter a proper email address (ex. name@domain.tld).")
+        event.preventDefault(); // Prevent form submission
+        return false;
+    }
+
+    // User id check
+    if(userID.length < 5 || userID.length > 30){
+        alert("Please enter a user ID between 5 to 30 characters.")
+        event.preventDefault(); // Prevent form submission
+        return false;
+    }
+    if(!userIDformat.test(userID)){
+        alert("User ID cannot start with a number. Can only contain letters, numbers, underscores, and dashes.No spaces allowed.")
+        event.preventDefault(); // Prevent form submission
+        return false;
+    }
+    // Password and User id check
+    if((password.includes(userID) || password.includes(firstName) || password.includes(lastName) || password === userID)){
+        alert("Password cannot contain your User ID, First Name, or Last Name.")
+        event.preventDefault(); // Prevent form submission
+        return false;
+    }
+    // Check for password length (8 to 30 characters)
+    if (password.length < 8 || password.length > 30) {
+        alert("Password must be between 8 and 30 characters.")
+        event.preventDefault(); // Prevent form submission
+        return false;
+    } 
+    // Check for at least 1 lowercase letter
+    if (!password.match(lowercase)) {
+        alert(" Must contain at least 1 lowercase letter.")
+        event.preventDefault(); // Prevent form submission
+        return false;
+    }
+    // Check for at least 1 uppercase letter
+    if (!password.match(uppercase)) {
+        alert(" Must contain at least 1 uppercase letter.")
+        event.preventDefault(); // Prevent form submission
+        return false;
+    }
+    // Check for at least 1 number
+    if (!password.match(numb)){
+        alert("Must contain at least 1 number.")
+        event.preventDefault(); // Prevent form submission
+        return false;
+    }
+    // Check for at least 1 special character
+    if (!password.match(special)){
+        alert("Must contain at least 1 special character.")
+        event.preventDefault(); // Prevent form submission
+        return false;
+    }
+    // Check if passwords match
+    if (password !== password2) {
+        alert("Passwords do not match!")
+        event.preventDefault(); // Prevent form submission
+        return false;
+    } 
+    // If everything is correct, return true to allow form submission
+    return true;
+}
+
+function validatePassword() {
+    var password = document.getElementById("password").value;
+    var password2 = document.getElementById("password2").value;
+    var passwordFeedback = document.getElementById("passwordFeedback");
+    var password2Feedback = document.getElementById("password2Feedback");
+    var uppercase = /[A-Z]/;
+    var lowercase = /[a-z]/;
+    var numb = /[0-9]/;
+    var special = /[ !@#$%^&*()_+\-=\[\]{};:\\|,.<>\/?~]/;// took out the quotations from example.
+
+    // Check for password length (8 to 30 characters)
+    if (password.length < 8 || password.length > 30) {
+        passwordFeedback.textContent = "Password must be between 8 and 30 characters.";
+        passwordFeedback.className = "invalid";
+    } 
+    else{
+        passwordFeedback.textContent = "Valid password length.";
+        passwordFeedback.className = "valid";
+    }
+
+    // Check for at least 1 lowercase letter
+    if (!password.match(lowercase)) {
+        passwordFeedback.textContent += " Must contain at least 1 lowercase letter.";
+        passwordFeedback.className = "invalid";
+    }
+
+    // Check for at least 1 uppercase letter
+    if (!password.match(uppercase)) {
+        passwordFeedback.textContent += " Must contain at least 1 uppercase letter.";
+        passwordFeedback.className = "invalid";
+    }
+
+    // Check for at least 1 number
+    if (!password.match(numb)){
+        passwordFeedback.textContent += "Must contain at least 1 number."
+        passwordFeedback.className = "invalid";
+    }
+
+    // Check for at least 1 special character
+    if (!password.match(special)){
+        passwordFeedback.textContent += "Must contain at least 1 special character."
+        passwordFeedback.className = "invalid";
+    }
+
+    // Check if passwords match
+    if (password !== password2) {
+        password2Feedback.textContent = "Passwords do not match!";
+        password2Feedback.className = "invalid";
+    } 
+    else{
+        password2Feedback.textContent = "Passwords match.";
+        password2Feedback.className = "valid";
+    }
+}
+
+function validatePhone(){
+    var phone = document.getElementById("phone").value;
+    var phoneFeedback = document.getElementById("phoneFeedback");
+    var phonecheck = /^([0-9]{3})?[-]?([0-9]{3})[-]?([0-9]{4})$/;
+
+    //check if phone number is valid
+    if (!(phonecheck.test(phone))){
+        phoneFeedback.textContent = "This phone number is invalid."
+        phoneFeedback.className = "invalid";
+    }
+    else{
+        phoneFeedback.textContent = "This phone number is valid."
+        phoneFeedback.className = "valid";
+    }
+    if(phone == ""){
+        phoneFeedback.textContent = "";
+        phoneFeedback.className = "";
+    }
+}
+function displayUserInput() {
+    // Get the user input from the form
+    var fname = document.getElementById("fname").value;
+    var mname = document.getElementById("mname").value;
+    var lname = document.getElementById("lname").value;
+    var dob = document.getElementById("dob").value;
+    var ssn = document.getElementById("ssn").value;
+    var address = document.getElementById("address").value;
+    var address2 = document.getElementById("address2").value;
+    var city = document.getElementById("city").value;
+    var state = document.getElementById("state").value;
+    var zip = document.getElementById("zip").value;
+    var email = document.getElementById("email").value;
+    var phone = document.getElementById("phone").value;
+    var symptoms = document.querySelector("textarea[name='Current_Symptions']").value;
+    var gender = document.querySelector('input[name="Gender"]:checked')?.value;
+    var vaccination = document.querySelector('input[name="Vaccination"]:checked')?.value;
+    var insurance = document.querySelector('input[name="Insurance"]:checked')?.value;
+    var pain = document.getElementById("pain").value;
+    var userId = document.getElementById("id").value.toLowerCase();
+    var password = document.getElementById("password").value;
+    var password2 = document.getElementById("password2").value;
+
+    // Display the collected data in a table
+    var table = document.getElementById("Review Data");
+    var newRow = table.insertRow();
+
+    newRow.insertCell(0).innerText = fname + " " + mname + " " + lname;
+    newRow.insertCell(1).innerText = dob;
+    newRow.insertCell(2).innerText = ssn;
+    newRow.insertCell(3).innerText = address + " " + address2;
+    newRow.insertCell(4).innerText = city + ", " + state + " " + zip;
+    newRow.insertCell(5).innerText = email;
+    newRow.insertCell(6).innerText = phone;
+    newRow.insertCell(7).innerText = symptoms;
+    newRow.insertCell(8).innerText = gender || "Not specified";
+    newRow.insertCell(9).innerText = vaccination || "Not specified";
+    newRow.insertCell(10).innerText = insurance || "Not specified";
+    newRow.insertCell(11).innerText = pain;
+    newRow.insertCell(12).innerText = userId;
+    newRow.insertCell(13).innerText = password;
+    newRow.insertCell(14).innerText = password2;
+
+    // Show the table after clicking the button
+    table.style.display = "table";
+}
+window.onscroll = function() {headerSticky()};
+var header = document.getElementById("Header");
+var sticky = header.offsetTop;
+function headerSticky() {
+  if (window.pageYOffset > sticky) {
+    header.classList.add("sticky");
+  } else {
+    header.classList.remove("sticky");
+  }
+}
+function handleReset() {
+  setCookie("fname", "", -1); // Expire the cookie
+  document.getElementById("Header").innerText = "Hello New User!";
+}
